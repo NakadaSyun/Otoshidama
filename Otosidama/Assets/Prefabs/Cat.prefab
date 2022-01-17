@@ -487,7 +487,6 @@ GameObject:
   - component: {fileID: 4022393449682883369}
   - component: {fileID: 4032027394964184503}
   - component: {fileID: 3909740680267547545}
-  - component: {fileID: 3928968730435141203}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -563,21 +562,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3928968730435141203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3969421363316836721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40079260bda69f14c80332a04d1632a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 3
-  jumpForce: 300
-  timeBeforeNextJump: 1.2
 --- !u!1 &3969478362848375811
 GameObject:
   m_ObjectHideFlags: 0
