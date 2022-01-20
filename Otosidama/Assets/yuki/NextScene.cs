@@ -22,6 +22,7 @@ public class NextScene : MonoBehaviour
     void Start()
     {
         UIObj = GameObject.Find("UI_Script");
+        scene = Scene.Main;
     }
 
     void Update()
@@ -49,26 +50,30 @@ public class NextScene : MonoBehaviour
     public void SceneChange(Scene sceneName)
     {
         scene = sceneName;
+
     }
 
     void Title()
     {
-        Time.timeScale = 0;
-        UIObj.GetComponent<ButtonScript>().Title.SetActive(true);
-        UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
+        //Time.timeScale = 0;
+        //UIObj.GetComponent<ButtonScript>().Title.SetActive(true);
+        //UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
+        //UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
+        //UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
+        //UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
     }
 
     void Main()
     {
         Time.timeScale = 1;
-        UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(true);
-        UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
+        if(UIObj != null)
+        {
+            UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(true);
+            //UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
+            UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
+            UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
+            UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
+        }
     }
 
     void GameOver()
@@ -77,7 +82,7 @@ public class NextScene : MonoBehaviour
         UIObj.GetComponent<ButtonScript>().GameOver.SetActive(true);
         UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
         UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
+        //UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
         UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
     }
 
@@ -87,7 +92,7 @@ public class NextScene : MonoBehaviour
         UIObj.GetComponent<ButtonScript>().GameClear.SetActive(true);
         UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
         UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
+        //UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
         UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
     }
 
@@ -98,7 +103,7 @@ public class NextScene : MonoBehaviour
         UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(true);
         UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
         UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
+        //UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
     }
 
     public void Init()
