@@ -1575,7 +1575,7 @@ PrefabInstance:
     - target: {fileID: 4601049196022512264, guid: c06205366f842ab4d9b1190825d9b5d3,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4601049196022512265, guid: c06205366f842ab4d9b1190825d9b5d3,
         type: 3}
@@ -3726,13 +3726,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865429555}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 538c671b931733947894569f3bce9897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   friends: {fileID: 865429555}
   span: 0
+  Init: 0
 --- !u!1 &896218000
 GameObject:
   m_ObjectHideFlags: 0
@@ -5891,7 +5892,7 @@ PrefabInstance:
     - target: {fileID: 7830971016628619556, guid: 312952ced769eea4f84692329d75887b,
         type: 3}
       propertyPath: m_Name
-      value: Ch_0CP00M00Bn
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7830971016628619558, guid: 312952ced769eea4f84692329d75887b,
         type: 3}
@@ -7860,6 +7861,7 @@ GameObject:
   - component: {fileID: 3987253563367539407}
   - component: {fileID: 3895092249643517859}
   - component: {fileID: 4013729394365669605}
+  - component: {fileID: 3989114728199343504}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -7867,6 +7869,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3989114728199343504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3989114728199343503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb18ea4cbc39ab4fbca25e933ef0f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3989660596351317447
 GameObject:
   m_ObjectHideFlags: 0

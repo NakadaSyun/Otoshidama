@@ -39,7 +39,7 @@ public class FriendsMove : MonoBehaviour
                 myTransform.position = pos;
 
             }
-            else if (myTransform.position.z < -0.5f)        //立ち止まる
+            else if (myTransform.position.z < -0.5f && myTransform.position.z > -2.0f)        //立ち止まる
             {
                 GameObject.Find("MainManager").GetComponent<MainManager>().canFriendFind = true;
                 activeTime += Time.deltaTime;

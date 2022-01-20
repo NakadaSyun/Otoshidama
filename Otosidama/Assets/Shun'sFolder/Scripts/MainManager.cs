@@ -42,6 +42,7 @@ public class MainManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Plstatus = GameObject.Find("Player").GetComponent<Player_ModeChange>().P_StudyMode;
         Raid();
     }
 
@@ -62,9 +63,9 @@ public class MainManager : MonoBehaviour
             period -= Time.deltaTime;
             if(period < 0.0f)
             {
-                array[1].Raidevent();
+                array[MakeRaid()].Raidevent();
                 IsRaid = true;
-                period = Mathf.Infinity;
+                period = RAID_TIME;
             }
         }
         //襲撃イベントの実行中
@@ -90,10 +91,9 @@ public class MainManager : MonoBehaviour
         void parentAttackStart()
     {
         //親の攻撃がStart
-        Debug.Log("ママー");
 
         GameObject.Find("Door").GetComponent<MotherMove>().enabled = true;
-        Invoke("parentAttackStop", 5.0f);
+        Invoke("parentAttackStop", 5.5f);
     }
     void parentAttackStop()
     {
@@ -103,7 +103,6 @@ public class MainManager : MonoBehaviour
 
     void friendAttackStart()
     {
-        Debug.Log("だれー");
         //友達の攻撃がStart
         Friend.GetComponent<FriendsMove>().Init = true;
     }
@@ -122,5 +121,23 @@ public class MainManager : MonoBehaviour
     {
         //鶏の攻撃がStart
         Chicken.GetComponent<ChickenFeint>().PosInit();
+    }
+
+    public bool checkFind()
+    {
+        //親が見ているときにさぼる
+        if(canParentFind == true && Plstatus == false)
+        {
+            return true;
+        }
+
+        //友達が見ているときに勉強
+        Debug.Log(canFriendFind);
+        if (canFriendFind == true && Plstatus == true)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
