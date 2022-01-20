@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Player_ModeChange : MonoBehaviour
 {
-    Animator animator;
-    public void OnClick()
-    {
-        //if (animator.ModeChange == false)
-        //{
-        //}
-    animator.SetBool("ModeChange", false);
-    }
+    //Animator animator;
+
+    //// スタート時に呼ばれる
+    //void Start()
+    //{
+    //    this.animator = GetComponent<Animator>();
+    //}
+
+    //public void OnClick()
+    //{
+    //    Debug.Log("ボタンが押された");
+    //    animator.Setbool("StudyMode", true);
+    //}
+
+
 }
