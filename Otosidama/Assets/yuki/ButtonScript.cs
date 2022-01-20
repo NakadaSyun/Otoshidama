@@ -25,53 +25,32 @@ public class ButtonScript : MonoBehaviour
 
         Time.timeScale = 0;
     }
-    void Update()
-    {
-        
-    }
 
     public void StartButton()
     {
         UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Main);
-        MainCanvas.SetActive(true);
-        Title.SetActive(false);
-        Time.timeScale = 1;
+        UIObj.GetComponent<NextScene>().Init();
     }
 
     public void PauseButton_ON()
     {
         UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Pause);
-        Pause.SetActive(true);
-        Time.timeScale = 0;
     }
     public void PauseButton_OFF()
     {
         UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Main);
-        Pause.SetActive(false);
-        Time.timeScale = 1;
     }
 
     public void RetryButton()
     {
         UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Main);
-        UIObj.GetComponent<timeCount>().TimeReset();
-        Time.timeScale = 1;
-        Pause.SetActive(false);
-        MainCanvas.SetActive(true);
-        GameClear.SetActive(false);
-        GameOver.SetActive(false);
+        UIObj.GetComponent<NextScene>().Init();
     }
 
     public void BackTitleButton()
     {
         UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Title);
-        UIObj.GetComponent<timeCount>().TimeReset();
-        Time.timeScale = 0;
-        Pause.SetActive(false);
-        MainCanvas.SetActive(false);
-        GameClear.SetActive(false);
-        GameOver.SetActive(false);
-        Title.SetActive(true);
+        UIObj.GetComponent<NextScene>().Init();
     }
 
     public void ExitButton()
