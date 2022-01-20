@@ -7,117 +7,109 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject Friend;
     [SerializeField] private GameObject Chicken;
+    private const float BREAK_TIME = 1.0f;
+    private const float RAID_TIME = 5.0f;
+    private float period;
 
-    private delegate void Wave();
+    private delegate void Event();
     private struct iArray
     {
-        public Wave wave;
+        public Event Raidevent;
     }
-    iArray[] array = new iArray[5];
+    iArray[] array = new iArray[4];
 
-    private float TimeLimit;
-    private float TimeCount;
 
     public bool canParentFind;        //親の判定(true:ON false:OFF)
     public bool canFriendFind;        //友達の判定(true:ON false:OFF)
     public bool Plstatus;        //親or友達の判定(true:勉強 false:さぼり)
+
+    private bool IsRaid;
     void Start()
     {
-        TimeCount = GameObject.Find("UI_Script").GetComponent<timeCount>().countup;
-        TimeLimit = GameObject.Find("UI_Script").GetComponent<timeCount>().timeLimit;
+        GameObject.Find("Door").GetComponent<MotherMove>().enabled = false;     //親の攻撃をstop
+
         Initialized();
 
+        canParentFind = false;
+        canFriendFind = false;
+        Plstatus = false;
 
-        GameObject.Find("Door").GetComponent<MotherMove>().enabled = false;     //親の攻撃をstop
+        IsRaid = false;
+
+        period = BREAK_TIME;
     }
 
     // Update is called once per frame
     void Update()
     {
-        WaveFunc();
-
-
+        Raid();
     }
 
-    void WaveFunc()
+    int MakeRaid()
     {
-        int waveNum = (int)((TimeLimit - TimeCount) / 12) - 1;
-        array[waveNum].wave();
+        //襲撃イベントの選定
+        int RaidNum = 0;
+
+        RaidNum = Random.Range(0, 120) % 4;
+
+        return RaidNum;
     }
-
-     public bool checkFind()
+    void Raid()
     {
-        if(canParentFind && !Plstatus)  //親が見ていてさぼっている場合
+        //襲撃イベントの実行
+        if (!IsRaid)
         {
-            return true;
+            period -= Time.deltaTime;
+            if(period < 0.0f)
+            {
+                array[1].Raidevent();
+                IsRaid = true;
+                period = Mathf.Infinity;
+            }
         }
-        
-        if(canFriendFind && Plstatus)  //友達が見ていて勉強している場合
+        //襲撃イベントの実行中
+        else if(IsRaid)
         {
-            return true;
+            period -= Time.deltaTime;
+            if (period < 0.0f)
+            {
+                IsRaid = false;
+                period = BREAK_TIME;
+            }
         }
-
-        return false;
     }
 
     private void Initialized()
     {
-        array[0].wave = Wave1;
-        array[1].wave = Wave2;
-        array[2].wave = Wave3;
-        array[3].wave = Wave4;
-        array[4].wave = Wave5;
+        array[0].Raidevent = parentAttackStart;
+        array[1].Raidevent = friendAttackStart;
+        array[2].Raidevent = CatAttack;
+        array[3].Raidevent = chickenAttack;
     }
 
-    void Wave1()
-    {
-
-    }
-
-    void Wave2()
-    {
-
-    }
-
-    void Wave3()
-    {
-
-    }
-
-    void Wave4()
-    {
-
-    }
-
-    void Wave5()
-    {
-
-    }
-
-    void parentAttackStart()
+        void parentAttackStart()
     {
         //親の攻撃がStart
+        Debug.Log("ママー");
+
         GameObject.Find("Door").GetComponent<MotherMove>().enabled = true;
-        canParentFind = true;
+        Invoke("parentAttackStop", 5.0f);
     }
     void parentAttackStop()
     {
         //親の攻撃がStop
-        canParentFind = false;
+        GameObject.Find("Door").GetComponent<MotherMove>().enabled = false;
     }
 
     void friendAttackStart()
     {
+        Debug.Log("だれー");
         //友達の攻撃がStart
-        Friend.GetComponent<FriendsMove>().Start();
-        canFriendFind = true;
-
+        Friend.GetComponent<FriendsMove>().Init = true;
     }
 
     void friendAttackStop()
     {
-        //友達の攻撃がStop
-        canFriendFind = false;
     }
 
     void CatAttack()
