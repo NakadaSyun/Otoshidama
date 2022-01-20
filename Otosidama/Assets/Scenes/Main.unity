@@ -5904,6 +5904,11 @@ PrefabInstance:
       propertyPath: TRUEObject_2
       value: 
       objectReference: {fileID: 286866712}
+    - target: {fileID: 7830971016628619558, guid: 312952ced769eea4f84692329d75887b,
+        type: 3}
+      propertyPath: P_StudyMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7834094811543077696, guid: 312952ced769eea4f84692329d75887b,
         type: 3}
       propertyPath: m_LocalPosition.x

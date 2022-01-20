@@ -69,7 +69,7 @@ public class MotherMove : MonoBehaviour
         //ドアが開き始めてからの時間を計る(この間、母親は見ている)
         if (anima.GetBool("Transfer") == true)
         {
-            GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = true;
+            Invoke("judgement", 0.8f);
             //ドアが開いている時間を計測
             time += Time.deltaTime;
         }
@@ -92,5 +92,9 @@ public class MotherMove : MonoBehaviour
             //タイムを0に戻す
             time = 0;
         }
+    }
+    void judgement()
+    {
+        GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = true;
     }
 }
