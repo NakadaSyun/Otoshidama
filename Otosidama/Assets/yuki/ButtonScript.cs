@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
-    [SerializeField] public GameObject Title;
+    //[SerializeField] public GameObject Title;
     [SerializeField] public GameObject GameClear;
     [SerializeField] public GameObject GameOver;
     [SerializeField] public GameObject MainCanvas;
@@ -21,16 +22,17 @@ public class ButtonScript : MonoBehaviour
         MainCanvas.SetActive(false);
         GameClear.SetActive(false);
         GameOver.SetActive(false);
-        Title.SetActive(true);
+        //Title.SetActive(true);
 
         Time.timeScale = 0;
     }
 
-    public void StartButton()
-    {
-        UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Main);
-        UIObj.GetComponent<NextScene>().Init();
-    }
+    //public void StartButton()
+    //{
+    //    //UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Main);
+    //    //UIObj.GetComponent<NextScene>().Init();
+    //    SceneManager.LoadScene("Main");
+    //}
 
     public void PauseButton_ON()
     {
@@ -44,13 +46,15 @@ public class ButtonScript : MonoBehaviour
     public void RetryButton()
     {
         UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Main);
-        UIObj.GetComponent<NextScene>().Init();
+        //UIObj.GetComponent<NextScene>().Init();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void BackTitleButton()
     {
-        UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Title);
-        UIObj.GetComponent<NextScene>().Init();
+        //UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Title);
+        //UIObj.GetComponent<NextScene>().Init();
+        SceneManager.LoadScene("Title");
     }
 
     public void ExitButton()
