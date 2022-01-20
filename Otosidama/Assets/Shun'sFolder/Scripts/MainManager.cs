@@ -26,6 +26,9 @@ public class MainManager : MonoBehaviour
         TimeCount = GameObject.Find("UI_Script").GetComponent<timeCount>().countup;
         TimeLimit = GameObject.Find("UI_Script").GetComponent<timeCount>().timeLimit;
         Initialized();
+
+
+        GameObject.Find("Door").GetComponent<MotherMove>().enabled = false;     //親の攻撃をstop
     }
 
     // Update is called once per frame
@@ -38,7 +41,7 @@ public class MainManager : MonoBehaviour
 
     void WaveFunc()
     {
-        int waveNum = (int)(TimeLimit - TimeCount) / 12;
+        int waveNum = (int)((TimeLimit - TimeCount) / 12) - 1;
         array[waveNum].wave();
     }
 
@@ -91,23 +94,41 @@ public class MainManager : MonoBehaviour
 
     }
 
-    void parentAttack()
+    void parentAttackStart()
     {
+        //親の攻撃がStart
         GameObject.Find("Door").GetComponent<MotherMove>().enabled = true;
+        canParentFind = true;
+    }
+    void parentAttackStop()
+    {
+        //親の攻撃がStop
+        canParentFind = false;
     }
 
-    void friendAttack()
+    void friendAttackStart()
     {
+        //友達の攻撃がStart
+        Friend.GetComponent<FriendsMove>().Start();
+        canFriendFind = true;
 
+    }
+
+    void friendAttackStop()
+    {
+        //友達の攻撃がStop
+        canFriendFind = false;
     }
 
     void CatAttack()
     {
-
+        //猫の攻撃がStart
+        gameObject.GetComponent<CatDoor>().IsInit = true;
     }
 
     void chickenAttack()
     {
-
+        //鶏の攻撃がStart
+        Chicken.GetComponent<ChickenFeint>().PosInit();
     }
 }

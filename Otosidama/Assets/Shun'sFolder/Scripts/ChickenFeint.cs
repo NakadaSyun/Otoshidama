@@ -33,7 +33,7 @@ public class ChickenFeint : MonoBehaviour
                                         (-1.2f * Time.deltaTime));
     }
 
-    void PosInit()
+    public void PosInit()
     {
         transform.position = new Vector3(3.0f, 0.3f, 4.0f);
     }

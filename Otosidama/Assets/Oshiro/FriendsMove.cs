@@ -8,7 +8,7 @@ public class FriendsMove : MonoBehaviour
     public float span;
     private float activeTime,currentTime;
 
-    private void Start()
+    public void Start()
     {
         Transform myTransform = friends.transform;
 

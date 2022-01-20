@@ -22,10 +22,13 @@ public class CatDoor : MonoBehaviour
     [SerializeField]private float Speed = 1;
 
     private float TimeKeper;
+
+    public bool IsInit;     //初期化
     void Start()
     {
         TimeKeper = 0.0f;
         Initialized();
+        IsInit = false;
     }
 
     // Update is called once per frame
@@ -45,7 +48,7 @@ public class CatDoor : MonoBehaviour
             array[(int)TimeKeper].Cstatus();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (IsInit)
         {
             TimeKeper = 0.0f;
         }
