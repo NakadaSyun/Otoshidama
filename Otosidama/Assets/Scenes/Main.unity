@@ -2908,7 +2908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203c00384809d144f899052420d2f9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Title: {fileID: 197835131}
   GameClear: {fileID: 1587439576}
   GameOver: {fileID: 1229859618}
   MainCanvas: {fileID: 599579362}
@@ -2926,7 +2925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countup: 0
-  timeLimit: 100
+  timeLimit: 60
   timeText: {fileID: 1502369430}
 --- !u!4 &854713450
 Transform:
@@ -7660,7 +7659,7 @@ PrefabInstance:
     - target: {fileID: 477744078974411930, guid: ba0729eb14db442449de6a9b0b7bd66d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -77.45
+      value: -132.64
       objectReference: {fileID: 0}
     - target: {fileID: 477744078974411933, guid: ba0729eb14db442449de6a9b0b7bd66d,
         type: 3}
