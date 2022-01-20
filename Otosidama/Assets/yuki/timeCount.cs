@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class timeCount : MonoBehaviour
 {
     //カウントアップ
-    private float countup = 0.0f;
+    public float countup = 0.0f;
 
     //タイムリミット
-    public float timeLimit = 100.0f;
+    public float timeLimit = 60.0f;
 
     //時間を表示するText
     [SerializeField] public Text timeText;
