@@ -33,7 +33,6 @@ public class timeCount : MonoBehaviour
         if(countup <= 0.0)
         {
             UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.GameClear);
-            Time.timeScale = 0;
         }
         else
         {
