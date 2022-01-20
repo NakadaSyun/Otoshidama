@@ -17,14 +17,16 @@ public class Player_ModeChange : MonoBehaviour
     GameObject clickedGameObject;
 
     /// <summary>
-    /// Active状態を変更させたいGameObject変数
+    /// 主人公がfalseの時に出現させたいGameObject変数
     /// </summary>
-    public GameObject setactiveObject;
+    public GameObject FALSEObject;
+    public GameObject FALSEObject_2;
 
     /// <summary>
-    /// Active状態を変更させたいGameObject変数
+    /// 主人公がtrueの時に出現させたいGameObject変数
     /// </summary>
-    public GameObject setNonactiveObject;
+    public GameObject TRUEObject;
+    public GameObject TRUEObject_2;
 
 
     void Start()
@@ -67,15 +69,27 @@ public class Player_ModeChange : MonoBehaviour
         {
             Debug.Log("trueの条件式に入った");
             P_StudyMode = false;        //主人公の状態を漫画中(false)にする
-            setactiveObject.SetActive(true);//漫画本をActive状態にする
-            setNonactiveObject.SetActive(false);//鉛筆を非Active状態にする
+
+            //false用のオブジェクトをActive状態にする
+            FALSEObject.SetActive(true);//漫画本をActive状態にする
+            FALSEObject_2.SetActive(true);//漫画本をActive状態にする
+
+            //true用のオブジェクトを非Active状態にする
+            TRUEObject.SetActive(false);//鉛筆を非Active状態にする
+            TRUEObject_2.SetActive(false);//鉛筆を非Active状態にする
         }
         else
         {
             Debug.Log("elseの条件式に入った");
             P_StudyMode = true;        //主人公の状態を勉強中(true)にする
-            setactiveObject.SetActive(false);//漫画本を非Active状態にする
-            setNonactiveObject.SetActive(true);//鉛筆をActive状態にする
+
+            //false用のオブジェクトを非Active状態にする
+            FALSEObject.SetActive(false);//漫画本を非Active状態にする
+            FALSEObject_2.SetActive(false);//漫画本を非Active状態にする
+
+            //true用のオブジェクトをActive状態にする
+            TRUEObject.SetActive(true);//鉛筆をActive状態にする
+            TRUEObject_2.SetActive(true);//鉛筆をActive状態にする
         }
 
         animator.SetBool("StudyMode", P_StudyMode);
