@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Actionoccurrence : MonoBehaviour
+public class MainManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] private GameObject Friend;
+    [SerializeField] private GameObject Chicken;
+
     private delegate void Wave();
     private struct iArray
     {
@@ -84,6 +87,26 @@ public class Actionoccurrence : MonoBehaviour
     }
 
     void Wave5()
+    {
+
+    }
+
+    void parentAttack()
+    {
+        GameObject.Find("Door").GetComponent<MotherMove>().enabled = true;
+    }
+
+    void friendAttack()
+    {
+
+    }
+
+    void CatAttack()
+    {
+
+    }
+
+    void chickenAttack()
     {
 
     }
