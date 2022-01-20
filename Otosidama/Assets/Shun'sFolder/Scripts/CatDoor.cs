@@ -8,6 +8,8 @@ public class CatDoor : MonoBehaviour
 
     private delegate void DoorStatus();
     private delegate void CatStatus();
+
+    private bool CanMove;
     private struct iArray
     {
         public DoorStatus Dstatus;
@@ -29,11 +31,21 @@ public class CatDoor : MonoBehaviour
         TimeKeper = 0.0f;
         Initialized();
         IsInit = false;
+        CanMove = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (IsInit)
+        {
+            TimeKeper = 0.0f;
+            CanMove = true;
+            IsInit = false;
+        }
+
+        if (!CanMove) return;
+
         TimeKeper += Time.deltaTime * Speed;
 
         if ((int)TimeKeper < array.Length &&
@@ -51,6 +63,13 @@ public class CatDoor : MonoBehaviour
         if (IsInit)
         {
             TimeKeper = 0.0f;
+            CanMove = true;
+            IsInit = false;
+        }
+
+        if(TimeKeper > 5.0f)
+        {
+            CanMove = false;
         }
     }
 

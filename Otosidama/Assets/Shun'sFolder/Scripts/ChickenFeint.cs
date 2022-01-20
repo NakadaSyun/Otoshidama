@@ -6,11 +6,9 @@ public class ChickenFeint : MonoBehaviour
 {
 
     // Start is called before the first frame update
-
-    [SerializeField]private GameObject Chicken;
     void Start()
     {
-        PosInit();
+        transform.position = new Vector3(3.0f, 0.3f, -2.5f);
     }
 
     // Update is called once per frame
