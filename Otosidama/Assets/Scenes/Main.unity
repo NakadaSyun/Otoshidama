@@ -7094,6 +7094,25 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 0.9179531
       objectReference: {fileID: 0}
+    - target: {fileID: 3584741862717588355, guid: 8c76c329e932d7e46a2798016a9d3e2d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584741862717588355, guid: 8c76c329e932d7e46a2798016a9d3e2d,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Bip001 R UpperArm'\n\tTransform 'Bip001
+        R Clavicle'\n\tTransform 'Bip001 L UpperArm'\n\tTransform 'Bip001 Neck'\n\tFrom
+        animation clip 'Study'\n\tFrom animation clip 'Comic'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584741862717588355, guid: 8c76c329e932d7e46a2798016a9d3e2d,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c76c329e932d7e46a2798016a9d3e2d, type: 3}
 --- !u!1001 &1963496757

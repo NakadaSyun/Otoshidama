@@ -8,7 +8,7 @@ public class MainManager : MonoBehaviour
     [SerializeField] private GameObject Friend;
     [SerializeField] private GameObject Chicken;
     private const float BREAK_TIME = 1.0f;
-    private const float RAID_TIME = 5.0f;
+    private const float RAID_TIME = 6.0f;
     private float period;
 
     private delegate void Event();
@@ -63,7 +63,7 @@ public class MainManager : MonoBehaviour
             period -= Time.deltaTime;
             if(period < 0.0f)
             {
-                array[MakeRaid()].Raidevent();
+                array[0].Raidevent();
                 IsRaid = true;
                 period = RAID_TIME;
             }
@@ -125,14 +125,14 @@ public class MainManager : MonoBehaviour
 
     public bool checkFind()
     {
+        Debug.Log(canParentFind);
         //親が見ているときにさぼる
-        if(canParentFind == true && Plstatus == false)
+        if (canParentFind == true && Plstatus == false)
         {
             return true;
         }
 
         //友達が見ているときに勉強
-        Debug.Log(canFriendFind);
         if (canFriendFind == true && Plstatus == true)
         {
             return true;
