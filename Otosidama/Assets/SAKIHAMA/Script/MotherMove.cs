@@ -70,41 +70,38 @@ public class MotherMove : MonoBehaviour
             DoorSource.PlayOneShot(Open);
         }
 
-        //ドアが開き始めてからの時間を計る(この間、母親は見ている)
-        if (anima.GetBool("Transfer") == true)
+       
+        //ドアのflgがfalseなおかつアニメーション移行flgがtrueなら入る(ドアが閉じる時の処理)
+        if (anima.GetBool("Open") == false && anima.GetBool("Transfer") == true)
         {
-            if (IsOnce)
+            GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = false;
+            GameObject.Find("MainManager").GetComponent<MainManager>().parentAttackStop();
+            //アニメーション移行flgをfalseにする
+            anima.SetBool("Transfer", false);
+
+            //タイムを0に戻す
+            time = 0;
+            IsOnce = true;
+
+        }
+        ////アニメーション移行flgがtrueならなおかつ1回置いて
+        else if (anima.GetBool("Transfer") == true && time > 3.5)
+        {
+            //ドアのBoolを逆に変更し閉じる
+            anima.SetBool("Open", false);
+            //音
+            DoorSource.PlayOneShot(Close);
+        } 
+        //ドアが開き始めてからの時間を計る(この間、母親は見ている)
+        else if (anima.GetBool("Transfer") == true)
+        {
+            if (IsOnce && time > 0.5f)
             {
-                Invoke("judgement", 0.5f);
+                GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = true;
                 IsOnce = false;
             }
             //ドアが開いている時間を計測
             time += Time.deltaTime;
         }
-
-        ////アニメーション移行flgがtrueならなおかつ1回置いて
-        if (anima.GetBool("Transfer") == true && time > 3.5)
-        {
-            //ドアのBoolを逆に変更し閉じる
-            anima.SetBool("Open", !anima.GetBool("Open"));
-            //音
-            DoorSource.PlayOneShot(Close);
-        }
-
-        //ドアのflgがfalseなおかつアニメーション移行flgがtrueなら入る(ドアが閉じる時の処理)
-        if (anima.GetBool("Open") == false && anima.GetBool("Transfer") == true)
-        {
-            GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = false;
-            Debug.Log("****\t" + GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind);
-            //アニメーション移行flgをfalseにする
-            anima.SetBool("Transfer", false);
-            //タイムを0に戻す
-            time = 0;
-            IsOnce = true;
-        }
-    }
-    void judgement()
-    {
-        GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = true;
     }
 }

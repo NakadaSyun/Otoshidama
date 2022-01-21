@@ -6,9 +6,11 @@ public class ChickenFeint : MonoBehaviour
 {
 
     // Start is called before the first frame update
+    private bool IsOnce;
     void Start()
     {
         transform.position = new Vector3(3.0f, 0.3f, -2.5f);
+        IsOnce = false;
     }
 
     // Update is called once per frame
@@ -16,6 +18,11 @@ public class ChickenFeint : MonoBehaviour
     {
         if(transform.position.z < -2.5f)
         {
+            if (IsOnce)
+            {
+                GameObject.Find("MainManager").GetComponent<MainManager>().chickenAttackStop();
+                IsOnce = false;
+            }
             return;
         }
         MovePos();
@@ -34,5 +41,6 @@ public class ChickenFeint : MonoBehaviour
     public void PosInit()
     {
         transform.position = new Vector3(3.0f, 0.3f, 4.0f);
+        IsOnce = true;
     }
 }

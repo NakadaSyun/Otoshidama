@@ -26,12 +26,14 @@ public class CatDoor : MonoBehaviour
     private float TimeKeper;
 
     public bool IsInit;     //初期化
+    public bool IsOnce;
     void Start()
     {
         TimeKeper = 0.0f;
         Initialized();
         IsInit = false;
         CanMove = false;
+        IsOnce = false;
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class CatDoor : MonoBehaviour
         {
             TimeKeper = 0.0f;
             CanMove = true;
+            IsOnce = true;
             IsInit = false;
         }
 
@@ -69,7 +72,12 @@ public class CatDoor : MonoBehaviour
 
         if(TimeKeper > 5.0f)
         {
-            CanMove = false;
+            CanMove = false; 
+            if (IsOnce)
+            {
+                GameObject.Find("MainManager").GetComponent<MainManager>().chickenAttackStop();
+                IsOnce = false;
+            }
         }
     }
 

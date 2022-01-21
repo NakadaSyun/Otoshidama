@@ -8,7 +8,7 @@ public class MainManager : MonoBehaviour
     [SerializeField] private GameObject Friend;
     [SerializeField] private GameObject Chicken;
     private const float BREAK_TIME = 1.0f;
-    private const float RAID_TIME = 6.0f;
+    private const float RAID_TIME = 12.0f;
     private float period;
 
     private delegate void Event();
@@ -23,7 +23,7 @@ public class MainManager : MonoBehaviour
     public bool canFriendFind;        //友達の判定(true:ON false:OFF)
     public bool Plstatus;        //親or友達の判定(true:勉強 false:さぼり)
 
-    private bool IsRaid;
+    public bool IsRaid;
     void Start()
     {
         GameObject.Find("Door").GetComponent<MotherMove>().enabled = false;     //親の攻撃をstop
@@ -60,24 +60,12 @@ public class MainManager : MonoBehaviour
         //襲撃イベントの実行
         if (!IsRaid)
         {
-            period -= Time.deltaTime;
-            if(period < 0.0f)
-            {
-                array[0].Raidevent();
-                IsRaid = true;
-                period = RAID_TIME;
-            }
+           array[MakeRaid()].Raidevent();
+            IsRaid = true;
         }
         //襲撃イベントの実行中
         else if(IsRaid)
-        {
-            period -= Time.deltaTime;
-            if (period < 0.0f)
-            {
-                IsRaid = false;
-                period = BREAK_TIME;
-            }
-        }
+        {}
     }
 
     private void Initialized()
@@ -91,14 +79,13 @@ public class MainManager : MonoBehaviour
         void parentAttackStart()
     {
         //親の攻撃がStart
-
         GameObject.Find("Door").GetComponent<MotherMove>().enabled = true;
-        Invoke("parentAttackStop", 5.5f);
     }
-    void parentAttackStop()
+    public void parentAttackStop()
     {
         //親の攻撃がStop
         GameObject.Find("Door").GetComponent<MotherMove>().enabled = false;
+        IsRaid = false;
     }
 
     void friendAttackStart()
@@ -107,14 +94,20 @@ public class MainManager : MonoBehaviour
         Friend.GetComponent<FriendsMove>().Init = true;
     }
 
-    void friendAttackStop()
+    public void friendAttackStop()
     {
+        IsRaid = false;
     }
 
     void CatAttack()
     {
         //猫の攻撃がStart
         gameObject.GetComponent<CatDoor>().IsInit = true;
+    }
+    public void CatAttackStop()
+    {
+        //猫の攻撃がStop
+        IsRaid = false;
     }
 
     void chickenAttack()
@@ -123,9 +116,14 @@ public class MainManager : MonoBehaviour
         Chicken.GetComponent<ChickenFeint>().PosInit();
     }
 
+    public void chickenAttackStop()
+    {
+        //鶏の攻撃がStop
+        IsRaid = false;
+    }
+
     public bool checkFind()
     {
-        Debug.Log(canParentFind);
         //親が見ているときにさぼる
         if (canParentFind == true && Plstatus == false)
         {

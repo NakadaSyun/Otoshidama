@@ -8,6 +8,7 @@ public class FriendsMove : MonoBehaviour
     public float span;
     private float activeTime,currentTime;
     public bool Init;
+    private bool IsOnce;
 
     public void Start()
     {
@@ -22,6 +23,8 @@ public class FriendsMove : MonoBehaviour
         span = 2f;
         currentTime = 0f;
         activeTime = 0f;
+        Init = false;
+        IsOnce = false;
     }
     void Update()
     {
@@ -29,7 +32,6 @@ public class FriendsMove : MonoBehaviour
 
         if (true)
         {
-            Debug.LogFormat("{0}秒経過", span);
             Transform myTransform = friends.transform;
 
             if (myTransform.position.z > -0.5f)
@@ -55,6 +57,11 @@ public class FriendsMove : MonoBehaviour
 
             if (myTransform.position.z <= -2f)
             {
+                if (IsOnce)
+                {
+                    GameObject.Find("MainManager").GetComponent<MainManager>().chickenAttackStop();
+                    IsOnce = false;
+                }
                 if (Init)
                 {
                     currentTime = 0;
@@ -63,7 +70,7 @@ public class FriendsMove : MonoBehaviour
                     Vector3 pos = myTransform.position;
                     pos.z = 2f;
                     myTransform.position = pos;
-                    Init = false;
+                    Init = false; IsOnce = true;
                 }
             }
         }
@@ -79,7 +86,6 @@ public class FriendsMove : MonoBehaviour
         //        friends.SetActive(false);
         //    }
         //}
-        Debug.Log(activeTime);
 
         //myTransform.position = pos;
     }
