@@ -14,7 +14,7 @@ public class NextScene : MonoBehaviour
         GameClear,  // ゲームクリア
         Pause       // ポーズ
     }
-    [SerializeField] private Scene scene;
+    [SerializeField] public Scene scene;
 
 
     GameObject UIObj;
