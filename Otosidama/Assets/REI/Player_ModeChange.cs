@@ -28,32 +28,49 @@ public class Player_ModeChange : MonoBehaviour
     public GameObject TRUEObject;
     public GameObject TRUEObject_2;
 
+    /// <summary>
+    /// シーン変更するスクリプトがアタッチされているオブジェ格納変数
+    /// </summary>
+    GameObject Sceneobj;
+    /// <summary>
+    /// シーン状態がenum管理されているスクリプト格納変数
+    /// </summary>
+    NextScene Scenescript;
+
 
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        Sceneobj = GameObject.Find("UI_Script");
+        Scenescript = Sceneobj.GetComponent<NextScene>();
+
     }
 
 
     void Update()
     {
-        //クリックしたオブジェクトを取得
-        if (Input.GetMouseButtonDown(0))
+
+        if (Scenescript.scene == NextScene.Scene.Main)
         {
-
-            clickedGameObject = null;
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit = new RaycastHit();
-
-            if (Physics.Raycast(ray, out hit))
+            //クリックしたオブジェクトを取得
+            if (Input.GetMouseButtonDown(0))
             {
-                clickedGameObject = hit.collider.gameObject;
-            }
 
-            if (clickedGameObject.name == "Player")      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
-            {
-                f_ButtonClick();        //関数呼び出し
+                clickedGameObject = null;
+
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit = new RaycastHit();
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    clickedGameObject = hit.collider.gameObject;
+                }
+
+                if (clickedGameObject.name == "Player")      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
+                {
+                    f_ButtonClick();        //関数呼び出し
+                }
             }
         }
     }
