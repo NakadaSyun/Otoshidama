@@ -469,7 +469,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.43
+  m_Radius: 1.67
   m_Height: 1.31
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f39c985dde8e9438e9ab0c6ef61775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P_StudyMode: 1
+  P_StudyMode: 0
   FALSEObject: {fileID: 7829653599329042337}
   FALSEObject_2: {fileID: 0}
   TRUEObject: {fileID: 7829653599931336014}
@@ -1212,6 +1212,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ComicBook
       objectReference: {fileID: 0}
+    - target: {fileID: 6982255395526029212, guid: 8de59d5ebc331e54594d94cfcc1cc87d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6982255395526029215, guid: 8de59d5ebc331e54594d94cfcc1cc87d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1348,6 +1353,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -8.969001
       objectReference: {fileID: 0}
+    - target: {fileID: 6071889648886674223, guid: d5bf88e6e72e98743bfcb9814268387b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 55d90bba1031caf49ae3ecf22a32f22d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5bf88e6e72e98743bfcb9814268387b, type: 3}
 --- !u!4 &7829653599931336015 stripped
