@@ -36,8 +36,11 @@ public class timeCount : MonoBehaviour
         }
         else
         {
-            //時間をカウントする
-            countup -= Time.deltaTime;
+            if(timeText.IsActive() == true)
+            {
+                //時間をカウントする
+                countup -= Time.deltaTime;
+            }
         }
     }
 
