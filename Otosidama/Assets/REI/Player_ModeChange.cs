@@ -51,12 +51,12 @@ public class Player_ModeChange : MonoBehaviour
     void Update()
     {
 
+        //現在のシーン状態がMain（母親、友達に見つかっていない状態）の時
         if (Scenescript.scene == NextScene.Scene.Main)
         {
             //クリックしたオブジェクトを取得
             if (Input.GetMouseButtonDown(0))
             {
-
                 clickedGameObject = null;
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -73,6 +73,12 @@ public class Player_ModeChange : MonoBehaviour
                 }
             }
         }
+
+        //現在のシーンの状態がGameOver（母親、友達に見つかった状態）の時
+        if (Scenescript.scene == NextScene.Scene.GameOver)
+        {
+            animator.SetBool("Wow_Anim", true); //Wow_Animのアニメーション再生フラグをtureにする
+        }
     }
 
 
@@ -88,12 +94,12 @@ public class Player_ModeChange : MonoBehaviour
             P_StudyMode = false;        //主人公の状態を漫画中(false)にする
 
             //false用のオブジェクトをActive状態にする
-            FALSEObject.SetActive(true);//漫画本をActive状態にする
-            FALSEObject_2.SetActive(true);//漫画本をActive状態にする
+            FALSEObject.SetActive(true);//ゲーム機をActive状態にする
+            FALSEObject_2.SetActive(true);//さぼりオブジェクトをActive状態にする
 
             //true用のオブジェクトを非Active状態にする
             TRUEObject.SetActive(false);//鉛筆を非Active状態にする
-            TRUEObject_2.SetActive(false);//鉛筆を非Active状態にする
+            TRUEObject_2.SetActive(false);//勉強オブジェクトを非Active状態にする
         }
         else
         {
@@ -101,12 +107,12 @@ public class Player_ModeChange : MonoBehaviour
             P_StudyMode = true;        //主人公の状態を勉強中(true)にする
 
             //false用のオブジェクトを非Active状態にする
-            FALSEObject.SetActive(false);//漫画本を非Active状態にする
-            FALSEObject_2.SetActive(false);//漫画本を非Active状態にする
+            FALSEObject.SetActive(false);//ゲーム機を非Active状態にする
+            FALSEObject_2.SetActive(false);//さぼりオブジェクトを非Active状態にする
 
             //true用のオブジェクトをActive状態にする
             TRUEObject.SetActive(true);//鉛筆をActive状態にする
-            TRUEObject_2.SetActive(true);//鉛筆をActive状態にする
+            TRUEObject_2.SetActive(true);//勉強オブジェクトをActive状態にする
         }
 
         animator.SetBool("StudyMode", P_StudyMode);

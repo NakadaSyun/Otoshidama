@@ -19,6 +19,13 @@ public class NextScene : MonoBehaviour
 
     GameObject UIObj;
 
+    private float anim_cnt;     //GameOver時のアニメーション再生までのカウント変数
+
+    /// <summary>
+    /// GameOver時のUI出現までの待機時間
+    /// </summary>
+    public float GameOverUI_WaitTime = 1.5f;
+
     void Start()
     {
         UIObj = GameObject.Find("UI_Script");
@@ -78,12 +85,19 @@ public class NextScene : MonoBehaviour
 
     void GameOver()
     {
-        Time.timeScale = 0;
-        UIObj.GetComponent<ButtonScript>().GameOver.SetActive(true);
-        UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
-        //UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
+        //GameOver時のUI出現までの時間をカウント開始
+        anim_cnt += Time.deltaTime;
+
+        //決められたUI出現までの時間が経過したら
+        if (anim_cnt > GameOverUI_WaitTime)
+        {
+            Time.timeScale = 0;
+            UIObj.GetComponent<ButtonScript>().GameOver.SetActive(true);
+            UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
+            UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
+            //UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
+            UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
+        }
     }
 
     void GameClear()
