@@ -38,6 +38,16 @@ public class Player_ModeChange : MonoBehaviour
     NextScene Scenescript;
 
 
+    //public AudioClip GameC1;
+    //public AudioClip GameC2;
+    //public AudioClip StudyC;
+    //public AudioSource PlayerS;
+    public AudioSource GameS1;
+    public AudioSource GameS2;
+    public AudioSource StudyS;
+    private bool Studyfig;      //False:GameS1 True:GamseS2
+    private bool Gamefig;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -45,8 +55,12 @@ public class Player_ModeChange : MonoBehaviour
         Sceneobj = GameObject.Find("UI_Script");
         Scenescript = Sceneobj.GetComponent<NextScene>();
 
+        GameS1.Play();
+        GameS2.Stop();
+        StudyS.Stop();
+        Studyfig = false;
+        Gamefig = false;
     }
-
 
     void Update()
     {
@@ -79,6 +93,32 @@ public class Player_ModeChange : MonoBehaviour
         {
             animator.SetBool("Wow_Anim", true); //Wow_Animのアニメーション再生フラグをtureにする
         }
+
+        if (Time.timeScale == 0)
+        {
+            GameS1.Pause();
+            GameS2.Pause();
+            StudyS.Pause();
+        }
+        else if (Time.timeScale != 0)
+        {
+            GameS1.UnPause();
+            GameS2.UnPause();
+            StudyS.UnPause();
+        }
+
+        //ゲーム中SEの変更
+        if (!GameS1.isPlaying && !Gamefig && !Studyfig)
+        {
+            GameS1.Stop();
+            GameS2.Play();
+            Gamefig = true;
+        }else if (!GameS2.isPlaying && Gamefig && !Studyfig)
+        {
+            GameS2.Stop();
+            GameS1.Play();
+            Gamefig = false;
+        }
     }
 
 
@@ -90,6 +130,21 @@ public class Player_ModeChange : MonoBehaviour
         //主人公の状態が勉強中(true)だったとき
         if (P_StudyMode == true)
         {
+            int R = (int)Random.Range(1,10);
+            StudyS.Stop();
+            if (R < 6)
+            {
+                GameS1.Play();
+                Gamefig = true;
+                Studyfig = false;
+            }
+            else
+            {
+                GameS2.Play();
+                Gamefig = false;
+                Studyfig = false;
+            }
+
             Debug.Log("trueの条件式に入った");
             P_StudyMode = false;        //主人公の状態を漫画中(false)にする
 
@@ -103,6 +158,13 @@ public class Player_ModeChange : MonoBehaviour
         }
         else
         {
+            GameS1.Stop();
+            GameS2.Stop();
+            if (!Studyfig)
+            {
+                StudyS.Play();
+                Studyfig = true;
+            }
             Debug.Log("elseの条件式に入った");
             P_StudyMode = true;        //主人公の状態を勉強中(true)にする
 
