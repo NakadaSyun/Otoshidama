@@ -6,6 +6,8 @@ public class gameOver : MonoBehaviour
 {
     GameObject mainManeger;
     GameObject UIObj;
+
+
     void Start()
     {
         mainManeger = GameObject.Find("MainManager");
@@ -19,6 +21,7 @@ public class gameOver : MonoBehaviour
             if (mainManeger.GetComponent<MainManager>().checkFind())
             {
                 UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.GameOver);
+
             }
         }
     }

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
+    public AudioClip Top;
+    public AudioClip On;
+    public AudioSource titleS;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +17,12 @@ public class Title : MonoBehaviour
 
     public void StartButton()
     {
+        titleS.PlayOneShot(On);
         SceneManager.LoadScene("Main");
+    }
+
+    public void MouseTop()
+    {
+        titleS.PlayOneShot(Top);
     }
 }

@@ -25,11 +25,18 @@ public class NextScene : MonoBehaviour
     /// GameOver時のUI出現までの待機時間
     /// </summary>
     public float GameOverUI_WaitTime = 1.5f;
+    public AudioClip Over;
+    public AudioClip Clear;
+    public AudioSource AudioS;
+    private bool OverFig;
+    private bool ClearFig;
 
     void Start()
     {
         UIObj = GameObject.Find("UI_Script");
         scene = Scene.Main;
+        OverFig = false;
+        ClearFig = false;
     }
 
     void Update()
@@ -91,6 +98,12 @@ public class NextScene : MonoBehaviour
         //決められたUI出現までの時間が経過したら
         if (anim_cnt > GameOverUI_WaitTime)
         {
+            if (!OverFig)
+            {
+                AudioS.PlayOneShot(Over);
+                OverFig = true;
+            }
+
             Time.timeScale = 0;
             UIObj.GetComponent<ButtonScript>().GameOver.SetActive(true);
             UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
@@ -102,6 +115,11 @@ public class NextScene : MonoBehaviour
 
     void GameClear()
     {
+        if (!ClearFig)
+        {
+            AudioS.PlayOneShot(Clear);
+            ClearFig = true;
+        }
         Time.timeScale = 0;
         UIObj.GetComponent<ButtonScript>().GameClear.SetActive(true);
         UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
