@@ -26,6 +26,17 @@ public class MotherMove : MonoBehaviour
         IsOnce = true;
     }
 
+    void Update()
+    {
+        if (Time.timeScale == 0)
+        {
+            DoorSource.Pause();
+        }
+        else if (Time.timeScale != 0)
+        {
+            DoorSource.UnPause();
+        }
+    }
     void FixedUpdate()
     {
         if (anima.GetBool("Transfer") == false)

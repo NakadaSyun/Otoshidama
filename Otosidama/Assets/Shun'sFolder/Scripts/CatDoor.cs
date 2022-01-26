@@ -27,6 +27,15 @@ public class CatDoor : MonoBehaviour
 
     public bool IsInit;     //初期化
     public bool IsOnce;
+
+    //SE
+    public AudioClip CatCry;    //猫の鳴き声
+    public AudioClip Open;      //扉を開ける音
+    public AudioClip Close;     //扉が閉まる音
+    public AudioSource CatSource;
+    private bool CatSourcefig;
+    private bool Openfig;
+    private bool Closefig;
     void Start()
     {
         TimeKeper = 0.0f;
@@ -34,6 +43,21 @@ public class CatDoor : MonoBehaviour
         IsInit = false;
         CanMove = false;
         IsOnce = false;
+        CatSourcefig = false;
+        Openfig = false;
+        Closefig = false;
+    }
+
+    void Update()
+    {
+        if (Time.timeScale == 0)
+        {
+            CatSource.Pause();
+        }
+        else if (Time.timeScale != 0)
+        {
+            CatSource.UnPause();
+        }
     }
 
     // Update is called once per frame
@@ -45,9 +69,12 @@ public class CatDoor : MonoBehaviour
             CanMove = true;
             IsOnce = true;
             IsInit = false;
+            CatSourcefig = false;
+            Openfig = false;
+            Closefig = false;
         }
 
-        if (!CanMove) return;
+        if (!CanMove)return;
 
         TimeKeper += Time.deltaTime * Speed;
 
@@ -61,6 +88,7 @@ public class CatDoor : MonoBehaviour
             array[(int)TimeKeper].Cstatus != null)
         {
             array[(int)TimeKeper].Cstatus();
+            
         }
 
         if (IsInit)
@@ -70,8 +98,21 @@ public class CatDoor : MonoBehaviour
             IsInit = false;
         }
 
+        //一度だけ鳴らす
+        if ((int)TimeKeper > 1 && !CatSourcefig)
+        {
+            CatSource.PlayOneShot(CatCry);
+            CatSourcefig = true;
+        }
+
         if(TimeKeper > 5.0f)
         {
+            //一度だけ鳴らす
+            if (!Closefig)
+            {
+                CatSource.PlayOneShot(Close);
+                Closefig = true;
+            }
             CanMove = false; 
             if (IsOnce)
             {
@@ -83,6 +124,12 @@ public class CatDoor : MonoBehaviour
 
     void OpenDoor()
     {
+        //一度だけ鳴らす
+        if (!Openfig)
+        {
+            CatSource.PlayOneShot(Open);
+            Openfig = true;
+        }
         // １秒でZ軸を-90度回す
         Door.transform.Rotate(new Vector3(0, 0, -90.0f * (Time.deltaTime * Speed)));
     }
@@ -94,6 +141,7 @@ public class CatDoor : MonoBehaviour
     }
     void CloseDoor()
     {
+        
         // １秒でZ軸を-90度回す
         Door.transform.Rotate(new Vector3(0, 0, 90.0f * (Time.deltaTime * Speed)));
     }
@@ -107,6 +155,7 @@ public class CatDoor : MonoBehaviour
     void CatIn()
     {
         Cat.transform.position += new Vector3(0, 0, -1 * (Time.deltaTime * Speed));
+        
     }
 
     void CatOut()

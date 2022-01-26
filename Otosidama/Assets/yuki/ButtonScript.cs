@@ -14,6 +14,10 @@ public class ButtonScript : MonoBehaviour
 
     GameObject UIObj;
 
+    public AudioClip Top;
+    public AudioClip On;
+    public AudioSource ButtonS;
+
     void Start()
     {
         UIObj = GameObject.Find("UI_Script");
@@ -36,15 +40,20 @@ public class ButtonScript : MonoBehaviour
 
     public void PauseButton_ON()
     {
+        ButtonS.PlayOneShot(On);
         UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Pause);
     }
     public void PauseButton_OFF()
     {
+        ButtonS.PlayOneShot(On);
         UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Main);
     }
 
     public void RetryButton()
     {
+        ButtonS.PlayOneShot(On);
+        System.Threading.Thread.Sleep(1000);
+        //SEが終わった後に処理
         UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Main);
         //UIObj.GetComponent<NextScene>().Init();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -52,6 +61,8 @@ public class ButtonScript : MonoBehaviour
 
     public void BackTitleButton()
     {
+        ButtonS.PlayOneShot(On);
+        System.Threading.Thread.Sleep(1000);
         //UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.Title);
         //UIObj.GetComponent<NextScene>().Init();
         SceneManager.LoadScene("Title");
@@ -59,10 +70,17 @@ public class ButtonScript : MonoBehaviour
 
     public void ExitButton()
     {
+        ButtonS.PlayOneShot(On);
+        System.Threading.Thread.Sleep(1000);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         UnityEngine.Application.Quit();
 #endif // UNITY_EDITOR
+    }
+
+    public void MouseTop()
+    {
+        ButtonS.PlayOneShot(Top);
     }
 }
