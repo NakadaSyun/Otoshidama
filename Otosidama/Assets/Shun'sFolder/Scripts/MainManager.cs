@@ -24,6 +24,10 @@ public class MainManager : MonoBehaviour
     public bool Plstatus;        //親or友達の判定(true:勉強 false:さぼり)
 
     public bool IsRaid;
+
+    public GameObject Mother;   //母親
+    public GameObject Cat;      //猫
+    private bool CatAndMotherfig;
     void Start()
     {
         GameObject.Find("Door").GetComponent<MotherMove>().enabled = false;     //親の攻撃をstop
@@ -35,6 +39,7 @@ public class MainManager : MonoBehaviour
         Plstatus = false;
 
         IsRaid = false;
+        CatAndMotherfig = true;
 
         period = BREAK_TIME;
     }
@@ -78,6 +83,8 @@ public class MainManager : MonoBehaviour
 
         void parentAttackStart()
     {
+        CatAndMotherfig = false;
+        Cat.SetActive(false);
         //親の攻撃がStart
         GameObject.Find("Door").GetComponent<MotherMove>().enabled = true;
     }
@@ -101,8 +108,15 @@ public class MainManager : MonoBehaviour
 
     void CatAttack()
     {
+        Cat.SetActive(true);
+        if (CatAndMotherfig)
+        {
+            Mother.SetActive(false);
+            CatAndMotherfig = false;
+        }
         //猫の攻撃がStart
         gameObject.GetComponent<CatDoor>().IsInit = true;
+        
     }
     public void CatAttackStop()
     {

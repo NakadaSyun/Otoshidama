@@ -6,7 +6,6 @@ public class MotheCatfig: MonoBehaviour
 {
     public GameObject Mother;   //母親のオブジェクト
 
-
     public void OpenDoorMove()
     {
         Mother.SetActive(true);

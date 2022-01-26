@@ -94,6 +94,23 @@ public class Player_ModeChange : MonoBehaviour
             animator.SetBool("Wow_Anim", true); //Wow_Animのアニメーション再生フラグをtureにする
         }
 
+        //ゲーム中SEの変更
+        if (!Studyfig)
+        {
+            if (!GameS1.isPlaying && !Gamefig)
+            {
+                GameS1.Stop();
+                GameS2.Play();
+                Gamefig = true;
+            }
+            else if (!GameS2.isPlaying && Gamefig)
+            {
+                GameS2.Stop();
+                GameS1.Play();
+                Gamefig = false;
+            }
+        }
+
         if (Time.timeScale == 0)
         {
             GameS1.Pause();
@@ -105,19 +122,6 @@ public class Player_ModeChange : MonoBehaviour
             GameS1.UnPause();
             GameS2.UnPause();
             StudyS.UnPause();
-        }
-
-        //ゲーム中SEの変更
-        if (!GameS1.isPlaying && !Gamefig && !Studyfig)
-        {
-            GameS1.Stop();
-            GameS2.Play();
-            Gamefig = true;
-        }else if (!GameS2.isPlaying && Gamefig && !Studyfig)
-        {
-            GameS2.Stop();
-            GameS1.Play();
-            Gamefig = false;
         }
     }
 

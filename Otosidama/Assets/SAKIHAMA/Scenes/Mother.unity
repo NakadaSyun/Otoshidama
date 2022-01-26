@@ -5895,6 +5895,8 @@ MonoBehaviour:
   canFriendFind: 0
   Plstatus: 0
   IsRaid: 0
+  Mother: {fileID: 276583255}
+  Cat: {fileID: 1146663848}
 --- !u!1 &800082084
 GameObject:
   m_ObjectHideFlags: 0

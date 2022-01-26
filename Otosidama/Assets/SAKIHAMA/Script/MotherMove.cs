@@ -98,6 +98,7 @@ public class MotherMove : MonoBehaviour
         ////アニメーション移行flgがtrueならなおかつ1回置いて
         else if (anima.GetBool("Transfer") == true && time > 3.5)
         {
+            Debug.Log("MotherMove");
             //ドアのBoolを逆に変更し閉じる
             anima.SetBool("Open", false);
             //音
