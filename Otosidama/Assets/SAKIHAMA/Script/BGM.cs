@@ -6,6 +6,8 @@ public class BGM : MonoBehaviour
 {
     public AudioSource BGMS;
     private bool Bgmfig;
+    public GameObject Claea;
+    public GameObject Over;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,11 @@ public class BGM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale == 0 && !Bgmfig)
+        if (Time.timeScale == 0 &&(Claea.activeSelf||Over.activeSelf))
+        {
+            BGMS.Stop();
+        }
+        else if (Time.timeScale == 0 && !Bgmfig)
         {
             BGMS.volume = BGMS.volume / 2;
             Bgmfig = true;
@@ -26,6 +32,7 @@ public class BGM : MonoBehaviour
             BGMS.volume = BGMS.volume*2;
             Bgmfig = false;
         }
+        
         
     }
 }

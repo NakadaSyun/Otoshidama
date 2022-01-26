@@ -3846,6 +3846,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGMS: {fileID: 728981247}
+  Claea: {fileID: 1587439576}
+  Over: {fileID: 1229859618}
 --- !u!82 &728981247
 AudioSource:
   m_ObjectHideFlags: 0
