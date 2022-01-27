@@ -44,8 +44,13 @@ public class Player_ModeChange : MonoBehaviour
     public AudioSource GameS1;
     public AudioSource GameS2;
     public AudioSource StudyS;
+    public AudioSource ButtonS;
+    public AudioSource SurprisedS;
+    public AudioSource ApplauseS;
     private bool Studyfig;      //False:GameS1 True:GamseS2
     private bool Gamefig;
+    private bool Surprisedfig;
+    private bool Applausefig;
 
     void Start()
     {
@@ -54,11 +59,15 @@ public class Player_ModeChange : MonoBehaviour
         Sceneobj = GameObject.Find("UI_Script");
         Scenescript = Sceneobj.GetComponent<NextScene>();
 
-        GameS1.Play();
+        //GameS1.Play();
         GameS2.Stop();
         StudyS.Stop();
+        SurprisedS.Stop();
+        ApplauseS.Stop();
         Studyfig = false;
         Gamefig = false;
+        Surprisedfig = false;
+        Applausefig = false;
     }
 
     void Update()
@@ -90,29 +99,41 @@ public class Player_ModeChange : MonoBehaviour
         //現在のシーンの状態がGameOver（母親、友達に見つかった状態）の時
         if (Scenescript.scene == NextScene.Scene.GameOver)
         {
+            if (!Surprisedfig)
+            {
+                SurprisedS.Play();
+                Surprisedfig = true;
+            }
             animator.SetBool("Wow_Anim", true); //Wow_Animのアニメーション再生フラグをtureにする
         }
 
         //現在のシーンの状態がGameClear（勉強、さぼりをやり遂げた状態）の時
         if (Scenescript.scene == NextScene.Scene.GameClear)
         {
+            if (!Applausefig)
+            {
+                ApplauseS.Play();
+                Applausefig = true;
+            }
             animator.SetBool("Yahoo_Anim", true); //Yahoo_Animのアニメーション再生フラグをtureにする
         }
-
-        
 
         //ゲーム中SEの変更
         if (!Studyfig)
         {
             if (!GameS1.isPlaying && !Gamefig)
             {
+                ButtonS.Stop();
                 GameS1.Stop();
+                ButtonS.Play();
                 GameS2.Play();
                 Gamefig = true;
             }
             else if (!GameS2.isPlaying && Gamefig)
             {
+                ButtonS.Stop();
                 GameS2.Stop();
+                ButtonS.Play();
                 GameS1.Play();
                 Gamefig = false;
             }
@@ -123,12 +144,14 @@ public class Player_ModeChange : MonoBehaviour
             GameS1.Pause();
             GameS2.Pause();
             StudyS.Pause();
+            ButtonS.Pause();
         }
         else if (Time.timeScale != 0)
         {
             GameS1.UnPause();
             GameS2.UnPause();
             StudyS.UnPause();
+            ButtonS.UnPause();
         }
     }
 
@@ -146,12 +169,14 @@ public class Player_ModeChange : MonoBehaviour
             if (R < 6)
             {
                 GameS1.Play();
+                //ButtonS.Play();
                 Gamefig = true;
                 Studyfig = false;
             }
             else
             {
                 GameS2.Play();
+                //ButtonS.Play();
                 Gamefig = false;
                 Studyfig = false;
             }
@@ -171,6 +196,7 @@ public class Player_ModeChange : MonoBehaviour
         {
             GameS1.Stop();
             GameS2.Stop();
+            ButtonS.Stop();
             if (!Studyfig)
             {
                 StudyS.Play();
