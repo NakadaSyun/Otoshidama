@@ -29,8 +29,14 @@ public class AvatarController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            playerStatus = GameObject.Find("1").GetComponent<Player_ModeChange>().P_StudyMode;
-            //playerStatus = true;
+            if (this.GetComponent<Player_ModeChange>() != null)
+            {
+                playerStatus = this.GetComponent<Player_ModeChange>().P_StudyMode;
+            }
+            else if (this.GetComponent<OnlinePlayer_ModeChange>() != null)
+            {
+                playerStatus = this.GetComponent<OnlinePlayer_ModeChange>().P_StudyMode;
+            }
 
             if (playerStatus == true)
             {
