@@ -90,20 +90,11 @@ public class Player_ModeChange : MonoBehaviour
                     clickedGameObject = hit.collider.gameObject;
                 }
 
-                if(PhotonNetwork.LocalPlayer.ActorNumber.ToString() == null)
+                if (clickedGameObject.name == "Player")      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
                 {
-                    if (clickedGameObject.name == "Player")      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
-                    {
-                        f_ButtonClick();        //関数呼び出し
-                    }
+                f_ButtonClick();        //関数呼び出し
                 }
-                else if(PhotonNetwork.LocalPlayer.ActorNumber >= 0)
-                {
-                    if (clickedGameObject.name == PhotonNetwork.LocalPlayer.ActorNumber.ToString())      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
-                    {
-                        f_ButtonClick();        //関数呼び出し
-                    }
-                }
+               
                 
             }
         }
