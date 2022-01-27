@@ -40,6 +40,7 @@ public class OnlineMainManager : MonoBehaviour
         Vector3 CreatePos = new Vector3(-3.0f, 0.419f, Zpos);
 
         GameObject obj = PhotonNetwork.Instantiate(Player.name, CreatePos, Player.transform.rotation);
+        obj.name = PhotonNetwork.LocalPlayer.ActorNumber.ToString();
     }
     void Start()
     {
@@ -54,18 +55,7 @@ public class OnlineMainManager : MonoBehaviour
         IsRaid = false;
         CatAndMotherfig = true;
 
-        GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
-        foreach (var Object in player)
-        {
-            if(Object.GetComponent<PhotonView>() != null)
-            {
-                if (Object.GetComponent<PhotonView>().IsMine)
-                {
-                    MyPlayer = Object;
-                }
-                Debug.Log(Object.name);
-            }
-        }
+        MyPlayer = GameObject.Find(PhotonNetwork.LocalPlayer.ActorNumber.ToString());
     }
 
     // Update is called once per frame

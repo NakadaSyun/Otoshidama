@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Player_ModeChange : MonoBehaviour
+public class OnlinePlayer_ModeChange : MonoBehaviourPunCallbacks, IPunObservable
 {
     Animator animator;
 
@@ -52,6 +54,7 @@ public class Player_ModeChange : MonoBehaviour
     private bool Surprisedfig;
     private bool Applausefig;
 
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -68,6 +71,7 @@ public class Player_ModeChange : MonoBehaviour
         Gamefig = false;
         Surprisedfig = false;
         Applausefig = false;
+
     }
 
     void Update()
@@ -82,17 +86,21 @@ public class Player_ModeChange : MonoBehaviour
                 clickedGameObject = null;
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit = new RaycastHit();
 
-                if (Physics.Raycast(ray, out hit))
+                //ヒットしたすべてのオブジェクト情報を取得
+                foreach (RaycastHit obj in Physics.RaycastAll(ray))
                 {
-                    clickedGameObject = hit.collider.gameObject;
+                    //ヒットしたオブジェクトの名前
+                    if (obj.transform.name == GameObject.Find(PhotonNetwork.LocalPlayer.ActorNumber.ToString()).name)      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
+                    {
+                        if (GetComponent<PhotonView>().IsMine)
+                        {
+                            f_ButtonClick();        //関数呼び出し
+                        }
+                    }
                 }
 
-                if (clickedGameObject.name == "Player")      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
-                {
-                    f_ButtonClick();        //関数呼び出し
-                }
+                
             }
         }
 
@@ -161,10 +169,11 @@ public class Player_ModeChange : MonoBehaviour
     /// </summary>
     public bool f_ButtonClick()
     {
+        
         //主人公の状態が勉強中(true)だったとき
         if (P_StudyMode == true)
         {
-            int R = (int)Random.Range(1,10);
+            int R = (int)Random.Range(1, 10);
             StudyS.Stop();
             if (R < 6)
             {
@@ -215,8 +224,24 @@ public class Player_ModeChange : MonoBehaviour
         }
 
         animator.SetBool("StudyMode", P_StudyMode);
-        Debug.Log("主人公の状態"+P_StudyMode);
+        Debug.Log("主人公の状態" + P_StudyMode);
 
         return P_StudyMode;             //現在の主人公の状態を返す。
+    }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // 自身のアバターのスタミナを送信する
+            stream.SendNext(P_StudyMode);
+            Debug.Log(this.name + "送信");
+        }
+        else
+        {
+            // 他プレイヤーのアバターのスタミナを受信する
+            P_StudyMode = (bool)stream.ReceiveNext();
+            Debug.Log(this.name + "受信");
+        }
     }
 }

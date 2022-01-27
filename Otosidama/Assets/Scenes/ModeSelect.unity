@@ -570,7 +570,6 @@ GameObject:
   m_Component:
   - component: {fileID: 479520237}
   - component: {fileID: 479520236}
-  - component: {fileID: 479520235}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -578,21 +577,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &479520235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 479520234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93539eddb2d079e48b34cbca25eb7449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BGMS: {fileID: 479520236}
-  Claea: {fileID: 0}
-  Over: {fileID: 0}
 --- !u!82 &479520236
 AudioSource:
   m_ObjectHideFlags: 0
@@ -605,7 +589,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8bb0c9a1a665f1043a1d770676524c03, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -751,6 +735,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnlineButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287243183701812263, guid: 361ca4379c26c83449f49ad7e929fb0b,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6287243184175141520, guid: 361ca4379c26c83449f49ad7e929fb0b,
         type: 3}

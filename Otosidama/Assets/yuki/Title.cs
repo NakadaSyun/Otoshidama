@@ -18,7 +18,7 @@ public class Title : MonoBehaviour
     public void StartButton()
     {
         titleS.PlayOneShot(On);
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("ModeSelect");
     }
 
     public void MouseTop()

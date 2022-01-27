@@ -1437,9 +1437,10 @@ GameObject:
   - component: {fileID: -4752830832057805208}
   - component: {fileID: 6505396359904957812}
   - component: {fileID: 3509809029791801273}
+  - component: {fileID: -5238411876420231856}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2156,6 +2157,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6505396359904957812}
+  - {fileID: 3509809029791801273}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -2189,8 +2191,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: StudyMode
+  - Type: 4
+    SynchronizeType: 0
+    Name: Wow_Anim
+  - Type: 4
+    SynchronizeType: 0
+    Name: Yahoo_Anim
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!114 &-5238411876420231856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7169603799436788706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe281e5a5c773b042a78d4c87a78993e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_StudyMode: 1
+  FALSEObject: {fileID: 3406041489107535743}
+  FALSEObject_2: {fileID: 7018000971401963574}
+  TRUEObject: {fileID: 7168106053169303432}
+  TRUEObject_2: {fileID: 1140182618991292695}
+  GameS1: {fileID: 7169603799436788705}
+  GameS2: {fileID: 7169603799436788734}
+  StudyS: {fileID: 7169603799436788735}
+  ButtonS: {fileID: 7169603799436788733}
+  SurprisedS: {fileID: 7169603799436788732}
+  ApplauseS: {fileID: 7169603799436788731}
 --- !u!1 &7169617006769771620
 GameObject:
   m_ObjectHideFlags: 0
