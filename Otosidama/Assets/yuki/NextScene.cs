@@ -37,6 +37,8 @@ public class NextScene : MonoBehaviour
     private bool OverFig;
     private bool ClearFig;
 
+    [SerializeField] private GameObject pauseButton;
+
     void Start()
     {
         Time.timeScale = 0;
@@ -158,6 +160,7 @@ public class NextScene : MonoBehaviour
 
     void ThreeTimeCount()
     {
+        pauseButton.SetActive(false);
         UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
         UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(true);
         UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
@@ -169,6 +172,7 @@ public class NextScene : MonoBehaviour
         }
         if(Time.timeScale == 1)
         {
+            pauseButton.SetActive(true);
             scene = Scene.Main;
         }
 
