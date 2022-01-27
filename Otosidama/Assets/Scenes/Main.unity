@@ -4354,6 +4354,7 @@ MonoBehaviour:
   Over: {fileID: 8300000, guid: f90777e20df1c1f4c957503bc2d7c1a6, type: 3}
   Clear: {fileID: 8300000, guid: d53b0d2906b5db04590b481f15ff1104, type: 3}
   AudioS: {fileID: 854713453}
+  pauseButton: {fileID: 2058702076}
 --- !u!114 &854713448
 MonoBehaviour:
   m_ObjectHideFlags: 0
