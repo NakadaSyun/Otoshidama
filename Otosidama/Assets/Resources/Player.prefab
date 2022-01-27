@@ -2198,7 +2198,6 @@ GameObject:
   - component: {fileID: 7047235627487999228}
   - component: {fileID: 7128971539369846242}
   - component: {fileID: 7169603799436788707}
-  - component: {fileID: 7169603799436788704}
   - component: {fileID: 7169603799436788705}
   - component: {fileID: 7169603799436788734}
   - component: {fileID: 7169603799436788735}
@@ -2311,29 +2310,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7169603799436788704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7169603799436788706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38f39c985dde8e9438e9ab0c6ef61775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  P_StudyMode: 0
-  FALSEObject: {fileID: 3406041489107535743}
-  FALSEObject_2: {fileID: 7018000971401963574}
-  TRUEObject: {fileID: 7168106053169303432}
-  TRUEObject_2: {fileID: 1140182618991292695}
-  GameS1: {fileID: 7169603799436788734}
-  GameS2: {fileID: 7169603799436788735}
-  StudyS: {fileID: 7169603799436788705}
-  ButtonS: {fileID: 7169603799436788733}
-  SurprisedS: {fileID: 7169603799436788732}
-  ApplauseS: {fileID: 7169603799436788731}
 --- !u!82 &7169603799436788705
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3685,15 +3661,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a95561ecb1f0cdf41b97568c1349e8c0, type: 3}
---- !u!4 &8879561333761959350 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8935724984435596663, guid: a95561ecb1f0cdf41b97568c1349e8c0,
-    type: 3}
-  m_PrefabInstance: {fileID: 520336709946259649}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7018000971401963574 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7375886598551081207, guid: a95561ecb1f0cdf41b97568c1349e8c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 520336709946259649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8879561333761959350 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8935724984435596663, guid: a95561ecb1f0cdf41b97568c1349e8c0,
     type: 3}
   m_PrefabInstance: {fileID: 520336709946259649}
   m_PrefabAsset: {fileID: 0}

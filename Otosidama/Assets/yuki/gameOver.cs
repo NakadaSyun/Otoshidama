@@ -16,9 +16,9 @@ public class gameOver : MonoBehaviour
 
     void Update()
     {
-        if(mainManeger != null)
+        if (mainManeger != null)
         {
-            if(mainManeger.GetComponent<MainManager>() != null)
+            if (mainManeger.GetComponent<MainManager>() != null)
             {
                 if (mainManeger.GetComponent<MainManager>().checkFind())
                 {

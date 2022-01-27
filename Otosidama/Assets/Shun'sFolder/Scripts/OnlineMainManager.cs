@@ -61,7 +61,10 @@ public class OnlineMainManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Plstatus = MyPlayer.GetComponent<Player_ModeChange>().P_StudyMode;
+        if(MyPlayer.GetComponent<OnlinePlayer_ModeChange>() != null)
+        {
+            Plstatus = MyPlayer.GetComponent<OnlinePlayer_ModeChange>().P_StudyMode;
+        }
         Raid();
     }
 
@@ -79,7 +82,7 @@ public class OnlineMainManager : MonoBehaviour
         //襲撃イベントの実行
         if (!IsRaid)
         {
-            array[MakeRaid()].Raidevent();
+            array[0].Raidevent();
             IsRaid = true;
         }
         //襲撃イベントの実行中
@@ -152,6 +155,9 @@ public class OnlineMainManager : MonoBehaviour
 
     public bool checkFind()
     {
+        //Debug.Log("canParentFind : " + canParentFind);
+        //Debug.Log("canFriendFind : " + canParentFind);
+        //Debug.Log("Plstatus : " + canParentFind);
         //親が見ているときにさぼる
         if (canParentFind == true && Plstatus == false)
         {
