@@ -39,7 +39,7 @@ public class OnlineMainManager : MonoBehaviour
 
         Vector3 CreatePos = new Vector3(-3.0f, 0.419f, Zpos);
 
-        PhotonNetwork.Instantiate(Player.name, CreatePos, Player.transform.rotation);
+        GameObject obj = PhotonNetwork.Instantiate(Player.name, CreatePos, Player.transform.rotation);
     }
     void Start()
     {
@@ -57,17 +57,21 @@ public class OnlineMainManager : MonoBehaviour
         GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
         foreach (var Object in player)
         {
-            //if (photonView.IsMine)
-            //{
-            MyPlayer = Object;
-            //}
+            if(Object.GetComponent<PhotonView>() != null)
+            {
+                if (Object.GetComponent<PhotonView>().IsMine)
+                {
+                    MyPlayer = Object;
+                }
+                Debug.Log(Object.name);
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Plstatus = GameObject.Find("Player").GetComponent<Player_ModeChange>().P_StudyMode;
+        Plstatus = MyPlayer.GetComponent<Player_ModeChange>().P_StudyMode;
         Raid();
     }
 

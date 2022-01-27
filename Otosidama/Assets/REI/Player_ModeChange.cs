@@ -89,7 +89,7 @@ public class Player_ModeChange : MonoBehaviour
                     clickedGameObject = hit.collider.gameObject;
                 }
 
-                if (clickedGameObject.name == "Player")      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
+                if (clickedGameObject.tag == "Player")      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
                 {
                     f_ButtonClick();        //関数呼び出し
                 }
