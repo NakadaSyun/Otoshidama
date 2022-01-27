@@ -37,7 +37,6 @@ public class Player_ModeChange : MonoBehaviour
     /// </summary>
     NextScene Scenescript;
 
-
     //public AudioClip GameC1;
     //public AudioClip GameC2;
     //public AudioClip StudyC;
@@ -93,6 +92,14 @@ public class Player_ModeChange : MonoBehaviour
         {
             animator.SetBool("Wow_Anim", true); //Wow_Animのアニメーション再生フラグをtureにする
         }
+
+        //現在のシーンの状態がGameClear（勉強、さぼりをやり遂げた状態）の時
+        if (Scenescript.scene == NextScene.Scene.GameClear)
+        {
+            animator.SetBool("Yahoo_Anim", true); //Yahoo_Animのアニメーション再生フラグをtureにする
+        }
+
+        
 
         //ゲーム中SEの変更
         if (!Studyfig)

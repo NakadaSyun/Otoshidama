@@ -25,6 +25,11 @@ public class NextScene : MonoBehaviour
     /// GameOver時のUI出現までの待機時間
     /// </summary>
     public float GameOverUI_WaitTime = 1.5f;
+
+    /// <summary>
+    /// GameClear時のUI出現までの待機時間
+    /// </summary>
+    public float GameClearUI_WaitTime = 1.5f;
     public AudioClip Over;
     public AudioClip Clear;
     public AudioSource AudioS;
@@ -115,17 +120,25 @@ public class NextScene : MonoBehaviour
 
     void GameClear()
     {
-        if (!ClearFig)
+
+        //GameClear時のUI出現までの時間をカウント開始
+        anim_cnt += Time.deltaTime;
+
+        //決められたUI出現までの時間が経過したら
+        if (anim_cnt > GameClearUI_WaitTime)
         {
-            AudioS.PlayOneShot(Clear);
-            ClearFig = true;
+            if (!ClearFig)
+            {
+                AudioS.PlayOneShot(Clear);
+                ClearFig = true;
+            }
+            Time.timeScale = 0;
+            UIObj.GetComponent<ButtonScript>().GameClear.SetActive(true);
+            UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
+            UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
+            //UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
+            UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
         }
-        Time.timeScale = 0;
-        UIObj.GetComponent<ButtonScript>().GameClear.SetActive(true);
-        UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
-        //UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
-        UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
     }
 
     void Pause()
