@@ -18,11 +18,23 @@ public class gameOver : MonoBehaviour
     {
         if(mainManeger != null)
         {
-            if (mainManeger.GetComponent<MainManager>().checkFind())
+            if(mainManeger.GetComponent<MainManager>() != null)
             {
-                UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.GameOver);
+                if (mainManeger.GetComponent<MainManager>().checkFind())
+                {
+                    UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.GameOver);
 
+                }
             }
+            else if(mainManeger.GetComponent<OnlineMainManager>() != null)
+            {
+                if (mainManeger.GetComponent<OnlineMainManager>().checkFind())
+                {
+                    UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.GameOver);
+
+                }
+            }
+            
         }
     }
 }
