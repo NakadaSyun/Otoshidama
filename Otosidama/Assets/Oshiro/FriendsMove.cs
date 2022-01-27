@@ -79,8 +79,15 @@ public class FriendsMove : MonoBehaviour
                     friendsS.PlayOneShot(friendsWalk);
                     friendsSfig = true;
                 }
-                GameObject.Find("MainManager").GetComponent<MainManager>().canFriendFind = false;
-                Vector3 pos = myTransform.position;
+                if (GameObject.Find("MainManager").GetComponent<MainManager>() != null)
+                {
+                    GameObject.Find("MainManager").GetComponent<MainManager>().canFriendFind = false;
+                }
+                else if (GameObject.Find("MainManager").GetComponent<OnlineMainManager>() != null)
+                {
+                    GameObject.Find("MainManager").GetComponent<OnlineMainManager>().canFriendFind = false;
+                }
+                    Vector3 pos = myTransform.position;
                 pos.z -= 1.25f * Time.deltaTime;
                 myTransform.position = pos;
             }
@@ -90,7 +97,14 @@ public class FriendsMove : MonoBehaviour
                 if (IsOnce)
                 {
                     friendsS.Stop();
-                    GameObject.Find("MainManager").GetComponent<MainManager>().chickenAttackStop();
+                    if (GameObject.Find("MainManager").GetComponent<MainManager>() != null)
+                    {
+                        GameObject.Find("MainManager").GetComponent<MainManager>().chickenAttackStop();
+                    }
+                    else if (GameObject.Find("MainManager").GetComponent<OnlineMainManager>() != null)
+                    {
+                        GameObject.Find("MainManager").GetComponent<OnlineMainManager>().chickenAttackStop();
+                    }
                     IsOnce = false;
                 }
                 if (Init)
@@ -106,19 +120,5 @@ public class FriendsMove : MonoBehaviour
                 }
             }
         }
-        //}
-        //if(activeTime > 0f)
-        //{
-        //    friends.SetActive(true);
-        //    activeTime -= Time.deltaTime;
-        //    if (activeTime < 0f)
-        //    {
-        //        activeTime = 0f;
-        //        currentTime = 0f;
-        //        friends.SetActive(false);
-        //    }
-        //}
-
-        //myTransform.position = pos;
     }
 }
