@@ -67,7 +67,14 @@ public class FriendsMove : MonoBehaviour
                     friendsS.Stop();
                     friendsSfig = false;
                 }
-                GameObject.Find("MainManager").GetComponent<MainManager>().canFriendFind = true;
+                if (GameObject.Find("MainManager").GetComponent<MainManager>() != null)
+                {
+                    GameObject.Find("MainManager").GetComponent<MainManager>().canFriendFind = true;
+                }
+                else if (GameObject.Find("MainManager").GetComponent<OnlineMainManager>() != null)
+                {
+                    GameObject.Find("MainManager").GetComponent<OnlineMainManager>().canFriendFind = true;
+                }
                 activeTime += Time.deltaTime;
             }
 
