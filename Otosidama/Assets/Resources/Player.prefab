@@ -2944,16 +2944,16 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: StudyMode
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Wow_Anim
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Yahoo_Anim
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!114 &-5238411876420231856
 MonoBehaviour:
