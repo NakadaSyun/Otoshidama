@@ -82,7 +82,7 @@ public class OnlineMainManager : MonoBehaviour
         //襲撃イベントの実行
         if (!IsRaid)
         {
-            array[0].Raidevent();
+            array[MakeRaid()].Raidevent();
             IsRaid = true;
         }
         //襲撃イベントの実行中
