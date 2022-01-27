@@ -85,8 +85,16 @@ public class MotherMove : MonoBehaviour
         //ドアのflgがfalseなおかつアニメーション移行flgがtrueなら入る(ドアが閉じる時の処理)
         if (anima.GetBool("Open") == false && anima.GetBool("Transfer") == true)
         {
-            GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = false;
-            GameObject.Find("MainManager").GetComponent<MainManager>().parentAttackStop();
+            if(GameObject.Find("MainManager").GetComponent<MainManager>() != null)
+            {
+                GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = false;
+                GameObject.Find("MainManager").GetComponent<MainManager>().parentAttackStop();
+            }
+            else if(GameObject.Find("MainManager").GetComponent<OnlineMainManager>() != null)
+            {
+                GameObject.Find("MainManager").GetComponent<OnlineMainManager>().canParentFind = false;
+                GameObject.Find("MainManager").GetComponent<OnlineMainManager>().parentAttackStop();
+            }
             //アニメーション移行flgをfalseにする
             anima.SetBool("Transfer", false);
 
@@ -109,8 +117,15 @@ public class MotherMove : MonoBehaviour
         {
             if (IsOnce && time > 0.5f)
             {
-                GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = true;
-                IsOnce = false;
+                if (GameObject.Find("MainManager").GetComponent<MainManager>() != null)
+                {
+                    GameObject.Find("MainManager").GetComponent<MainManager>().canParentFind = true;
+                }
+                else if (GameObject.Find("MainManager").GetComponent<OnlineMainManager>() != null)
+                {
+                    GameObject.Find("MainManager").GetComponent<OnlineMainManager>().canParentFind = true;
+                }
+                    IsOnce = false;
             }
             //ドアが開いている時間を計測
             time += Time.deltaTime;

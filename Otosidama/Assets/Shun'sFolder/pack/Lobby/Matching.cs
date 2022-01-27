@@ -20,6 +20,8 @@ public class Matching : MonoBehaviourPunCallbacks
 
     public bool IsNextScene;
 
+    private Text ontext;        //接続人数をTextで表示するためのTextobj格納変数
+    private int p_cnt;  //player_count//接続人数をカウントする変数
 
     //InputFieldを格納するための変数
     InputField inputField;
@@ -42,11 +44,25 @@ public class Matching : MonoBehaviourPunCallbacks
 
         MatBefor.SetActive(true);     //名前入力のUIを表示
         Matnow.SetActive(false);      //GAMESTARTのUIを消去
+
+
+       ontext = GameObject.Find("SceneCanvas").transform.Find("onlinetext").GetComponent<Text>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        //接続人数を調べる処理******
+        foreach (var player in PhotonNetwork.PlayerList)    //接続しているプレイヤー状態が入ってる配列を回す
+        {
+            p_cnt++;        //回った回数をカウントする
+        }
+        ontext.text = "Matching..." + p_cnt;//回った回数＝プレイヤー数をText表示
+        p_cnt = 0;                      //カウントを0にする
+        //***************************
+
         if (!string.IsNullOrEmpty(inputField.text))
         {
             MatchButton.interactable = true;

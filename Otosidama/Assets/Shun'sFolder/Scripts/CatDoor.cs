@@ -116,8 +116,15 @@ public class CatDoor : MonoBehaviour
             CanMove = false; 
             if (IsOnce)
             {
-                GameObject.Find("MainManager").GetComponent<MainManager>().chickenAttackStop();
-                IsOnce = false;
+                if (GameObject.Find("MainManager").GetComponent<MainManager>() != null)
+                {
+                    GameObject.Find("MainManager").GetComponent<MainManager>().chickenAttackStop();
+                }
+                else if (GameObject.Find("MainManager").GetComponent<OnlineMainManager>() != null)
+                {
+                    GameObject.Find("MainManager").GetComponent<OnlineMainManager>().chickenAttackStop();
+                }
+                    IsOnce = false;
             }
         }
     }

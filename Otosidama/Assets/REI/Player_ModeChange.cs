@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Player_ModeChange : MonoBehaviour
 {
@@ -89,10 +90,21 @@ public class Player_ModeChange : MonoBehaviour
                     clickedGameObject = hit.collider.gameObject;
                 }
 
-                if (clickedGameObject.name == "Player")      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
+                if(PhotonNetwork.LocalPlayer.ActorNumber.ToString() == null)
                 {
-                    f_ButtonClick();        //関数呼び出し
+                    if (clickedGameObject.name == "Player")      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
+                    {
+                        f_ButtonClick();        //関数呼び出し
+                    }
                 }
+                else if(PhotonNetwork.LocalPlayer.ActorNumber >= 0)
+                {
+                    if (clickedGameObject.name == PhotonNetwork.LocalPlayer.ActorNumber.ToString())      //クリックしたオブジェクトの名前が主人公オブジェクトの名前だったら
+                    {
+                        f_ButtonClick();        //関数呼び出し
+                    }
+                }
+                
             }
         }
 
