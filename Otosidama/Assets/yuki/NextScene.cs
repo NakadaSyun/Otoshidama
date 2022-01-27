@@ -12,7 +12,8 @@ public class NextScene : MonoBehaviour
         Main,       // メイン
         GameOver,   // ゲームオーバー
         GameClear,  // ゲームクリア
-        Pause       // ポーズ
+        Pause,      // ポーズ
+        ThreeCount
     }
     [SerializeField] public Scene scene;
 
@@ -38,8 +39,9 @@ public class NextScene : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 0;
         UIObj = GameObject.Find("UI_Script");
-        scene = Scene.Main;
+        scene = Scene.ThreeCount;
         OverFig = false;
         ClearFig = false;
     }
@@ -62,6 +64,9 @@ public class NextScene : MonoBehaviour
                 break;
             case Scene.Pause:
                 Pause();
+                break;
+            case Scene.ThreeCount:
+                ThreeTimeCount();
                 break;
         }
     }
@@ -149,6 +154,24 @@ public class NextScene : MonoBehaviour
         UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
         UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
         //UIObj.GetComponent<ButtonScript>().Title.SetActive(false);
+    }
+
+    void ThreeTimeCount()
+    {
+        UIObj.GetComponent<ButtonScript>().Pause.SetActive(false);
+        UIObj.GetComponent<ButtonScript>().MainCanvas.SetActive(true);
+        UIObj.GetComponent<ButtonScript>().GameClear.SetActive(false);
+        UIObj.GetComponent<ButtonScript>().GameOver.SetActive(false);
+        if(UIObj.GetComponent<ThreeCount>().StartFlg == false)
+        {
+            // コルーチンを一度だけ呼び出す
+            StartCoroutine(UIObj.GetComponent<ThreeCount>().Count());
+        }
+        if(Time.timeScale == 1)
+        {
+            scene = Scene.Main;
+        }
+
     }
 
     public void Init()
