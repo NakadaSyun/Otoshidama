@@ -5,14 +5,16 @@ using UnityEngine.UI;
 public class AvatarController : MonoBehaviourPunCallbacks, IPunObservable
 {
     private const float Maxstady = 6f;
+    private const float Maxgame = 6f;
     [SerializeField] private Image gameGauge = default;
     [SerializeField] private Image stadyGauge = default;
 
-    private float currentstady = 0f;
+    private float currentStady = 0f;
+    private float currentGame = 0f;
 
     GameObject UIObj;
 
-    [SerializeField] float speed = 50f;
+    [SerializeField] float speed = 5f;
 
     bool playerStatus;
 
@@ -27,21 +29,31 @@ public class AvatarController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            //playerStatus = GameObject.Find("Player").GetComponent<Player_ModeChange>().P_StudyMode;
-            playerStatus = true;
+            playerStatus = GameObject.Find("1").GetComponent<Player_ModeChange>().P_StudyMode;
+            //playerStatus = true;
 
             if (playerStatus == true)
             {
-                currentstady = Mathf.Max(0f,currentstady + Time.deltaTime);
+                currentStady = Mathf.Max(0f, currentStady + Time.deltaTime);
             }
-            if(currentstady > Maxstady)
+            else
             {
-                currentstady = 0f;
+                currentGame = Mathf.Max(0f, currentGame + Time.deltaTime);
+            }
+            if (currentStady > Maxstady)
+            {
+                currentStady = 0f;
+            }
+            if (currentGame > Maxgame)
+            {
+                currentGame = 0f;
             }
         }
         //Debug.Log(currentstady);
         // スタミナをゲージに反映する
-        stadyGauge.fillAmount = currentstady / Maxstady;
+        stadyGauge.fillAmount = currentStady / Maxstady;
+        gameGauge.fillAmount = currentGame / Maxgame;
+        Debug.Log(gameGauge.fillAmount);
         Debug.Log(stadyGauge.fillAmount);
     }
 
@@ -50,12 +62,14 @@ public class AvatarController : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting)
         {
             // 自身のアバターのスタミナを送信する
-            stream.SendNext(currentstady);
+            stream.SendNext(currentStady);
+            stream.SendNext(currentGame);
         }
         else
         {
             // 他プレイヤーのアバターのスタミナを受信する
-            currentstady = (float)stream.ReceiveNext();
+            currentStady = (float)stream.ReceiveNext();
+            currentGame = (float)stream.ReceiveNext();
         }
     }
 }
