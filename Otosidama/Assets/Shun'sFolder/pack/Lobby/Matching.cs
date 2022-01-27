@@ -16,6 +16,10 @@ public class Matching : MonoBehaviourPunCallbacks
 
     [SerializeField] private GameObject MatBefor;
     [SerializeField] private GameObject Matnow;
+    [SerializeField] private GameObject PhotonObj;
+
+    public bool IsNextScene;
+
 
     //InputFieldを格納するための変数
     InputField inputField;
@@ -25,6 +29,7 @@ public class Matching : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.NickName = nickName;
+
     }
     void Start()
     {
@@ -32,6 +37,7 @@ public class Matching : MonoBehaviourPunCallbacks
         inputField = GameObject.Find("NameInput").GetComponent<InputField>();
         inputField.text = null;
         MatchButton.interactable = false;
+        IsNextScene = false;
 
 
         MatBefor.SetActive(true);     //名前入力のUIを表示
@@ -48,6 +54,12 @@ public class Matching : MonoBehaviourPunCallbacks
         else
         {
             MatchButton.interactable = false;
+        }
+
+        if (IsNextScene)
+        {
+            // シーン切り替え
+            SceneManager.LoadScene("OnlineMain");
         }
     }
     public void MatchingButton()
@@ -74,6 +86,7 @@ public class Matching : MonoBehaviourPunCallbacks
 
     public void GameStartButton()
     {
+        IsNextScene = true;
         // シーン切り替え
         SceneManager.LoadScene("OnlineMain");
     }
@@ -103,11 +116,18 @@ public class Matching : MonoBehaviourPunCallbacks
         MatBefor.SetActive(false);     //名前入力のUIを消去
         Matnow.SetActive(true);      //GAMESTARTのUIを表示
 
-        foreach (var player in PhotonNetwork.PlayerList)
+        PhotonNetwork.Instantiate(PhotonObj.name, Vector3.zero, PhotonObj.transform.rotation);
+
+        if (!PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            Debug.Log($"{player.NickName}({player.ActorNumber})");
-            GameObject.Find("Text").GetComponent<Text>().text = ($"{player.NickName}({player.ActorNumber})");
+            Matnow.transform.Find("GAMESTART").GetComponent<Button>().interactable = false;
         }
+
+        //foreach (var player in PhotonNetwork.PlayerList)
+        //{
+        //    Debug.Log($"{player.NickName}({player.ActorNumber})");
+        //    GameObject.Find("Text").GetComponent<Text>().text = ($"{player.NickName}({player.ActorNumber})");
+        //}
 
     }
 

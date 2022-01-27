@@ -1379,6 +1379,8 @@ GameObject:
   - component: {fileID: 6945864972300399934}
   - component: {fileID: 8424779763987732901}
   - component: {fileID: 3033403874466121380}
+  - component: {fileID: -2250063078057176869}
+  - component: {fileID: 7440737755186038294}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1803,10 +1805,12 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 2
   observableSearch: 2
   ObservedComponents:
   - {fileID: 3033403874466121380}
+  - {fileID: -2250063078057176869}
+  - {fileID: 7440737755186038294}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1831,9 +1835,41 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: Wow_Anim
+  - Type: 4
+    SynchronizeType: 0
+    Name: Yahoo_Anim
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+--- !u!114 &-2250063078057176869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6945864972300399907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &7440737755186038294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6945864972300399907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33dd59360ba2feb418622ea79f0f67d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: 
 --- !u!1 &6945869221841027311
 GameObject:
   m_ObjectHideFlags: 0
@@ -2805,15 +2841,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e592cb525531b240844fce1f52600c7, type: 3}
---- !u!4 &921436659264735191 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8066975741445273507, guid: 4e592cb525531b240844fce1f52600c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 7150096010486132852}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &921436659264735190 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8066975741445273506, guid: 4e592cb525531b240844fce1f52600c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 7150096010486132852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &921436659264735191 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8066975741445273507, guid: 4e592cb525531b240844fce1f52600c7,
     type: 3}
   m_PrefabInstance: {fileID: 7150096010486132852}
   m_PrefabAsset: {fileID: 0}

@@ -33,16 +33,13 @@ public class OnlineMainManager : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var PLAYER in PhotonNetwork.PlayerList)
-        {
-            PlayerNum = PLAYER.ActorNumber;
-        }
+        PlayerNum = PhotonNetwork.LocalPlayer.ActorNumber;
         // "NetworkedObject"プレパブからネットワークオブジェクトを生成する
-        //float Zpos = 
+        float Zpos = (1.0f - (float)PlayerNum) + 1.0f;
 
-        //Vector3 CreatePos = new Vector3(-3.0f,0.419f,)
+        Vector3 CreatePos = new Vector3(-3.0f, 0.419f, Zpos);
 
-        PhotonNetwork.Instantiate(Player.name, Player.transform.position, Player.transform.rotation);
+        PhotonNetwork.Instantiate(Player.name, CreatePos, Player.transform.rotation);
     }
     void Start()
     {
