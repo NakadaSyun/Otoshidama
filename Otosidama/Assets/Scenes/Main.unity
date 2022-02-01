@@ -4522,7 +4522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameGauge: {fileID: 267523347}
   stadyGauge: {fileID: 1624596579}
-  speed: 50
+  speed: 30
 --- !u!82 &854713453
 AudioSource:
   m_ObjectHideFlags: 0
