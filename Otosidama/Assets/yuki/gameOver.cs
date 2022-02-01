@@ -23,7 +23,7 @@ public class gameOver : MonoBehaviour
                 if (mainManeger.GetComponent<MainManager>().checkFind())
                 {
                     UIObj.GetComponent<NextScene>().SceneChange(NextScene.Scene.GameOver);
-
+                    mainManeger.GetComponent<MainManager>().IsGameEnd = true;
                 }
             }
             else if(mainManeger.GetComponent<OnlineMainManager>() != null)

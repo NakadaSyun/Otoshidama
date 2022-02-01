@@ -10,6 +10,7 @@ public class MainManager : MonoBehaviour
     private const float BREAK_TIME = 1.0f;
     private const float RAID_TIME = 12.0f;
     private float period;
+    public bool IsGameEnd;
 
     private delegate void Event();
     private struct iArray
@@ -42,6 +43,8 @@ public class MainManager : MonoBehaviour
         CatAndMotherfig = true;
 
         period = BREAK_TIME;
+
+        IsGameEnd = false;
     }
 
     // Update is called once per frame
@@ -63,7 +66,7 @@ public class MainManager : MonoBehaviour
     void Raid()
     {
         //襲撃イベントの実行
-        if (!IsRaid)
+        if (!IsRaid && !IsGameEnd)
         {
            array[MakeRaid()].Raidevent();
             IsRaid = true;

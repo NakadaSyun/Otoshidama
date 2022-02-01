@@ -17,6 +17,7 @@ public class NextScene : MonoBehaviour
     }
     [SerializeField] public Scene scene;
 
+    public ParticleSystem Kamihubuki;       //クリア時の紙吹雪のパーティクル
 
     GameObject UIObj;
 
@@ -127,6 +128,9 @@ public class NextScene : MonoBehaviour
 
     void GameClear()
     {
+        Kamihubuki.Simulate(t: Time.unscaledDeltaTime, //パーティクルシステムを早送りする時間
+                                   withChildren: true,                   //子のパーティクルシステムもすべて早送りするかどうか
+                                   restart: false);                   //再起動し最初から再生するかどうか
 
         //GameClear時のUI出現までの時間をカウント開始
         anim_cnt += Time.deltaTime;
@@ -138,6 +142,8 @@ public class NextScene : MonoBehaviour
             {
                 AudioS.PlayOneShot(Clear);
                 ClearFig = true;
+
+                GameObject.Find("MainManager").GetComponent<MainManager>().IsGameEnd = true;
             }
             Time.timeScale = 0;
             UIObj.GetComponent<ButtonScript>().GameClear.SetActive(true);
