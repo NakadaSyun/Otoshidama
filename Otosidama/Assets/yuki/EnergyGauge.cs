@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class EnergyGauge : MonoBehaviour
 {
-    [SerializeField] Slider gameGauge;
-    [SerializeField] Slider stadyGauge;
+    [SerializeField]public Slider gameGauge;
+    [SerializeField] public Slider stadyGauge;
 
     GameObject UIObj;
 

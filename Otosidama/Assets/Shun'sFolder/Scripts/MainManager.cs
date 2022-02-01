@@ -7,6 +7,7 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject Friend;
     [SerializeField] private GameObject Chicken;
+    [SerializeField] private GameObject UI_Obj;
     private const float BREAK_TIME = 1.0f;
     private const float RAID_TIME = 12.0f;
     private float period;
@@ -66,7 +67,10 @@ public class MainManager : MonoBehaviour
     void Raid()
     {
         //襲撃イベントの実行
-        if (!IsRaid && !IsGameEnd)
+        if (!IsRaid && !IsGameEnd
+            && 
+            (UI_Obj.GetComponent<EnergyGauge>().stadyGauge.value <= 0.98
+            || UI_Obj.GetComponent<EnergyGauge>().gameGauge.value <= 0.98))
         {
            array[MakeRaid()].Raidevent();
             IsRaid = true;
